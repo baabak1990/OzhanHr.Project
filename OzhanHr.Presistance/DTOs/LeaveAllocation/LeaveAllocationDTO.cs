@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OzhanHr.Application.DTOs.LeaveAllocation
 {
-    internal class LeaveAllocationDTO : BaseDomainDTO
+    public class LeaveAllocationDTO : BaseDomainDTO
     {
         public int NumberOfDays { get; set; }
 
