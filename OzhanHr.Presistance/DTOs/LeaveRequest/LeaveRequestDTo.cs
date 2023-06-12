@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OzhanHr.Application.DTOs.LeaveRequest
 {
-    public class LeaveRequestDTO : BaseDomainDTO
+    public class LeaveRequestDTO : BaseDomainDTO, IleaveRequestDTO
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

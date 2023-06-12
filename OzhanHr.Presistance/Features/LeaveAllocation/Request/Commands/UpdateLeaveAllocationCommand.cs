@@ -10,6 +10,6 @@ namespace OzhanHr.Application.Features.LeaveAllocation.Request.Commands
 {
     public class UpdateLeaveAllocationCommand:IRequest<Unit>
     {
-        public LeaveAllocationDTO LeaveAllocationDto { get; set; }
+        public ChangeLeaveAllocationDTO LeaveAllocationDto { get; set; }
     }
 }

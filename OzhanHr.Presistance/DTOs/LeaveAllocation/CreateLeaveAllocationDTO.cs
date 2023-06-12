@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OzhanHr.Application.DTOs.LeaveAllocation
 {
-    public class CreateLeaveAllocationDTO
+    public class CreateLeaveAllocationDTO: ILeaveAllocationValidation
     {
         public int NumberOfDays { get; set; }
         public int LeaveType_Id { get; set; }

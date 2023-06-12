@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using OzhanHr.Application.Contracts.Presistance.Repository;
+using OzhanHr.Application.DTOs.LeaveAllocation.Validation;
 using OzhanHr.Application.Features.LeaveAllocation.Request.Commands;
 
 namespace OzhanHr.Application.Features.LeaveAllocation.Handler.Commands
@@ -22,6 +23,12 @@ namespace OzhanHr.Application.Features.LeaveAllocation.Handler.Commands
         }
         public async Task<int> Handle(CreateLeaveAllocationCommand request, CancellationToken cancellationToken)
         {
+            var validation = new CreateLeaveAllocationValidation();
+            var validatior = await validation.ValidateAsync(request.Dto);
+            if (validatior.IsValid == false)
+            {
+                throw new Exception("Some Thing Happened ,Please Try Again !!!");
+            }
             var leaveAllocation = _mapper.Map<Domain.Entities.Leave.LeaveAllocation>(request.Dto);
             if (leaveAllocation == null)
             {

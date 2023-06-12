@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using OzhanHr.Application.Contracts.Presistance.Repository;
+using OzhanHr.Application.DTOs.LeaveAllocation.Validation;
 using OzhanHr.Application.Features.LeaveAllocation.Request.Commands;
 
 namespace OzhanHr.Application.Features.LeaveAllocation.Handler.Commands
@@ -22,6 +23,12 @@ namespace OzhanHr.Application.Features.LeaveAllocation.Handler.Commands
         }
         public async Task<Unit> Handle(UpdateLeaveAllocationCommand request, CancellationToken cancellationToken)
         {
+            var validation = new ChangeleaveAllocationValidation(_leaveAllocationRepository);
+            var validatior = await validation.ValidateAsync(request.LeaveAllocationDto);
+            if (validatior.IsValid == false)
+            {
+                throw new Exception("Some Thing Happened ,Please Try Again !!!");
+            }
             var leaveAllocation = await _leaveAllocationRepository.Get(request.LeaveAllocationDto.Id);
             if (leaveAllocation == null)
             {

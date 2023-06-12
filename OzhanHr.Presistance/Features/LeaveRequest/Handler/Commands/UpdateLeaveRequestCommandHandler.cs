@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using OzhanHr.Application.Contracts.Presistance.Repository;
+using OzhanHr.Application.DTOs.LeaveRequest;
+using OzhanHr.Application.DTOs.LeaveRequest.Validation;
 using OzhanHr.Application.Features.LeaveRequest.Request.Commands;
 
 namespace OzhanHr.Application.Features.LeaveRequest.Handler.Commands
@@ -21,6 +23,12 @@ namespace OzhanHr.Application.Features.LeaveRequest.Handler.Commands
         }
         public async Task<Unit> Handle(UpdateLeaveRequestCommand request, CancellationToken cancellationToken)
         {
+            var validation = new UpdateLeaveRequestValidation(_IleaveRequestRepository);
+            var validatior = await validation.ValidateAsync(request.LeaveRequestStatuesDto);
+            if (validatior.IsValid == false)
+            {
+                throw new Exception("Some thing Happened , Please Try Again !!!");
+            }
             var leaveRequest = await _IleaveRequestRepository.Get(request.Id);
             if (leaveRequest == null)
             {

@@ -7,7 +7,7 @@ using OzhanHr.Application.DTOs.CommonDto;
 
 namespace OzhanHr.Application.DTOs.LeaveRequest
 {
-    public class ChangeLeaveRequestStatuesDTO:BaseDomainDTO
+    public class ChangeLeaveRequestStatuesDTO:BaseDomainDTO,IleaveRequestDTO
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

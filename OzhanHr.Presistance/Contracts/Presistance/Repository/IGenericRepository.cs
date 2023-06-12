@@ -13,5 +13,6 @@ namespace OzhanHr.Application.Contracts.Presistance.Repository
         Task<T> Add(T entity);
         Task<T> Update(T entity);
         Task<T> Delete(T entity);
+        Task<bool> IsExist(int id);
     }
 }

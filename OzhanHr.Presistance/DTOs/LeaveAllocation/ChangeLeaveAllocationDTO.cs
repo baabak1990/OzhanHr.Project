@@ -7,7 +7,7 @@ using OzhanHr.Application.DTOs.CommonDto;
 
 namespace OzhanHr.Application.DTOs.LeaveAllocation
 {
-    public class ChangeLeaveAllocationDTO : BaseDomainDTO
+    public class ChangeLeaveAllocationDTO : BaseDomainDTO, ILeaveAllocationValidation
     {
         public int NumberOfDays { get; set; }
         public int Period { get; set; }
