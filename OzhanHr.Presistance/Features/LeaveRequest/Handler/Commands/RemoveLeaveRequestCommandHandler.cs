@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using OzhanHr.Application.Contracts.Presistance.Repository;
+using OzhanHr.Application.Exceptions;
 using OzhanHr.Application.Features.LeaveRequest.Request.Commands;
 using OzhanHr.Domain.Entities.Leave;
 
@@ -25,7 +26,7 @@ namespace OzhanHr.Application.Features.LeaveRequest.Handler.Commands
             var leaveRequest = await _IleaveRequestRepository.Get(request.LeaveRequestDto.Id);
             if (leaveRequest == null)
             {
-                throw new Exception("Some thing Happened , Please Try Again !!!");
+                throw new NotFountException(nameof(leaveRequest), request.LeaveRequestDto.Id);
 
             }
 

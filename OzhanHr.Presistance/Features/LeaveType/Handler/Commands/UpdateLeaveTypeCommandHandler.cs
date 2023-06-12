@@ -7,6 +7,7 @@ using AutoMapper;
 using MediatR;
 using OzhanHr.Application.Contracts.Presistance.Repository;
 using OzhanHr.Application.DTOs.LeaveType.Validation;
+using OzhanHr.Application.Exceptions;
 using OzhanHr.Application.Features.LeaveType.Request.Commands;
 
 namespace OzhanHr.Application.Features.LeaveType.Handler.Commands
@@ -29,12 +30,12 @@ namespace OzhanHr.Application.Features.LeaveType.Handler.Commands
 
             if (validator.IsValid == false)
             {
-                throw new Exception("Some Thing Happened please try again !!!");
+                throw new ValidationException(validator);
             }
             var leaveType = await _leaveTypeRepository.Get(request.LeaveTypeDto.Id);
             if (leaveType == null)
             {
-                throw new Exception("Some thing Happened Please Try Again");
+                throw new NotFountException(nameof(leaveType), request.LeaveTypeDto.Id);
             }
 
             _mapper.Map(request.LeaveTypeDto, leaveType);

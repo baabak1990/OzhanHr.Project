@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using OzhanHr.Application.Contracts.Presistance.Repository;
+using OzhanHr.Application.Exceptions;
 using OzhanHr.Application.Features.LeaveAllocation.Request.Commands;
 
 namespace OzhanHr.Application.Features.LeaveAllocation.Handler.Commands
@@ -25,7 +26,7 @@ namespace OzhanHr.Application.Features.LeaveAllocation.Handler.Commands
             var leaveAllocation = await _leaveAllocationRepository.Get(request.AllocationDto.Id);
             if (leaveAllocation == null)
             {
-                throw new Exception("Some Thing Happened ,Please Try Again !!!");
+                throw new NotFountException(nameof(leaveAllocation), request.AllocationDto.Id);
             }
 
             _mapper.Map(leaveAllocation, request.AllocationDto);

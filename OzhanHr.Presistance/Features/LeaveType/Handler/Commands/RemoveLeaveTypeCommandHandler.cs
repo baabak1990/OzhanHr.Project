@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using OzhanHr.Application.Contracts.Presistance.Repository;
+using OzhanHr.Application.Exceptions;
 using OzhanHr.Application.Features.LeaveType.Request.Commands;
+using OzhanHr.Domain.Entities.Leave;
 
 namespace OzhanHr.Application.Features.LeaveType.Handler.Commands
 {
@@ -25,7 +27,7 @@ namespace OzhanHr.Application.Features.LeaveType.Handler.Commands
             var leaveType = await _leaveTypeRepository.Get(request.LeaveTypeDto.Id);
             if (leaveType == null)
             {
-                throw new Exception("SomeThing Went Wrong Please Try Again !!!");
+                throw new NotFountException(nameof(leaveType), request.LeaveTypeDto.Id);
             }
 
             _mapper.Map(leaveType, request.LeaveTypeDto);

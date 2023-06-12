@@ -7,6 +7,7 @@ using AutoMapper;
 using MediatR;
 using OzhanHr.Application.Contracts.Presistance.Repository;
 using OzhanHr.Application.DTOs.LeaveAllocation.Validation;
+using OzhanHr.Application.Exceptions;
 using OzhanHr.Application.Features.LeaveAllocation.Request.Commands;
 
 namespace OzhanHr.Application.Features.LeaveAllocation.Handler.Commands
@@ -27,14 +28,10 @@ namespace OzhanHr.Application.Features.LeaveAllocation.Handler.Commands
             var validatior = await validation.ValidateAsync(request.Dto);
             if (validatior.IsValid == false)
             {
-                throw new Exception("Some Thing Happened ,Please Try Again !!!");
+                throw new ValidationException(validatior);
             }
             var leaveAllocation = _mapper.Map<Domain.Entities.Leave.LeaveAllocation>(request.Dto);
-            if (leaveAllocation == null)
-            {
-                throw new Exception("Some Thing Happened ,Please Try Again !!!");
-            }
-
+        
             await _leaveAllocationRepository.Add(leaveAllocation);
             return leaveAllocation.Id;
         }
