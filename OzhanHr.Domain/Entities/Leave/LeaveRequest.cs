@@ -14,7 +14,7 @@ namespace OzhanHr.Domain.Entities.Leave
         public DateTime EndDate { get; set; }
         public DateTime DateRequested { get; set; }
         public string RequestComments { get; set; }
-        public DateTime DataActioned { get; set; }
+        public DateTime? DataActioned { get; set; }
         public bool? Approved { get; set; }
         public bool Cancelled { get; set; }
 
