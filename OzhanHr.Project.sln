@@ -27,11 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OzhanHr.Presistance", "Ozha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OzhanHr.Application", "OzhanHr.Presistance\OzhanHr.Application.csproj", "{AF5E1E32-6E8B-4046-84D0-5DBA473F23F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OzhanHR.Infrasturcutre", "OzhanHR.Infrasturcutre\OzhanHR.Infrasturcutre.csproj", "{75A9212E-5595-41F6-8FD6-5A078C7AF9BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OzhanHR.Infrasturcutre", "OzhanHR.Infrasturcutre\OzhanHR.Infrasturcutre.csproj", "{75A9212E-5595-41F6-8FD6-5A078C7AF9BC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presistance", "Presistance", "{AD1B1562-6BC5-47F9-9B47-6CB13BE31D2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OzhanItHr.Presistance", "OzhanItHr.Presistance\OzhanItHr.Presistance.csproj", "{79AE34B9-84C0-4061-9720-7EBA686BA2AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OzhanItHr.Persistence", "OzhanItHr.Presistance\OzhanItHr.Persistence.csproj", "{79AE34B9-84C0-4061-9720-7EBA686BA2AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{78261422-64E7-40B9-9E00-9F5A2AED90AD}"
 EndProject

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OzhanHr.Domain.Entities.Common;
 using OzhanHr.Domain.Entities.Leave;
 
-namespace OzhanItHr.Presistance.Context
+namespace OzhanItHr.Persistence.Context
 {
     public class DefaultDbContext:DbContext
     {

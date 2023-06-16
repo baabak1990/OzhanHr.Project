@@ -10,5 +10,8 @@ namespace OzhanHr.Application.Contracts.Presistance.Repository
     public interface IleaveRequestRepository:IGenericRepository<LeaveRequest>
     {
         Task UpdateApprovedStatus(LeaveRequest leaveRequest, bool? IsApproved);
+        Task<IReadOnlyList<LeaveRequest>> GetLeaveRequestsWithDetails();
+        Task<LeaveRequest> GetLeaveRequestWithDetails(int id);
     }
+
 }

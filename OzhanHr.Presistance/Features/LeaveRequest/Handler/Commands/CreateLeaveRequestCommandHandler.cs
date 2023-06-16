@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using OzhanHr.Application.Contracts.Infrastructure;
 using OzhanHr.Application.Contracts.Presistance.Repository;
 using OzhanHr.Application.DTOs.LeaveRequest.Validation;
 using OzhanHr.Application.Exceptions;
 using OzhanHr.Application.Features.LeaveRequest.Request.Commands;
+using OzhanHr.Application.Model;
 
 namespace OzhanHr.Application.Features.LeaveRequest.Handler.Commands
 {
@@ -16,10 +18,12 @@ namespace OzhanHr.Application.Features.LeaveRequest.Handler.Commands
     {
         private readonly IleaveRequestRepository _IleaveRequestRepository;
         private readonly IMapper _mapper;
-        public CreateLeaveRequestCommandHandler(IleaveRequestRepository IleaveRequestRepository, IMapper mapper)
+        private readonly IEmailSender _emailSender;
+        public CreateLeaveRequestCommandHandler(IleaveRequestRepository IleaveRequestRepository, IMapper mapper, IEmailSender emailSender)
         {
             _IleaveRequestRepository = IleaveRequestRepository;
             _mapper = mapper;
+            _emailSender = emailSender;
         }
         public async Task<int> Handle(CreateLeaveRequestCommand request, CancellationToken cancellationToken)
         {
@@ -37,6 +41,24 @@ namespace OzhanHr.Application.Features.LeaveRequest.Handler.Commands
             }
 
             await _IleaveRequestRepository.Add(leavereqeust);
+
+            var email = new Email
+            {
+                To = "Employee@org.com",
+                Body = $"Your Leave Request For {request.Dto.StartDate:D} to {request.Dto.EndDate:D}" +
+                       $"has been Submitted Successfully",
+                Subject = "Leave Request Submitted"
+
+            };
+            try
+            {
+                await _emailSender.SendEmail(email);
+            }
+            catch (Exception e)
+            {
+                //"Log or Handle Error but dont throw exp"
+            }
+
             return leavereqeust.Id;
         }
     }
