@@ -11,7 +11,7 @@ using OzhanHr.Application.Features.LeaveAllocation.Request.Commands;
 
 namespace OzhanHr.Application.Features.LeaveAllocation.Handler.Commands
 {
-    public class RemoveLeaveAllocationCommandHandler:IRequestHandler<RemoveLeaveAllocationCommand>
+    public class RemoveLeaveAllocationCommandHandler:IRequestHandler<RemoveLeaveAllocationCommand,Unit>
     {
         private readonly ILeaveAllocationRepository _leaveAllocationRepository;
         private readonly Mapper _mapper;

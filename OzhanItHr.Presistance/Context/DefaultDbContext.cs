@@ -10,29 +10,6 @@ namespace OzhanItHr.Persistence.Context
         {
             
         }
-
-        #region Configurations
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DefaultDbContext).Assembly);
-            base.OnModelCreating(modelBuilder);
-        }
-
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-        {
-            foreach (var entry in ChangeTracker.Entries<BaseDomain>())
-            {
-                entry.Entity.ModifyDate=DateTime.Now;
-                if (entry.State == EntityState.Added)
-                {
-                    entry.Entity.CreateDate=DateTime.Now;
-                }
-            }
-            return base.SaveChangesAsync(cancellationToken);
-        }
-
-        #endregion
         #region Tabels
 
         public DbSet<LeaveType> LeaveTypes { get; set; }
@@ -40,5 +17,28 @@ namespace OzhanItHr.Persistence.Context
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
 
         #endregion
+        #region Configurations
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DefaultDbContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+        }
+    
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            foreach (var entry in ChangeTracker.Entries<BaseDomain>())
+            {
+                entry.Entity.ModifyDate = DateTime.Now;
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Entity.CreateDate = DateTime.Now;
+                }
+            }
+            return base.SaveChangesAsync(cancellationToken);
+        }
+
+        #endregion
+      
     }
 }

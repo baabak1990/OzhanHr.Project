@@ -8,7 +8,7 @@ using OzhanHr.Application.DTOs.LeaveType;
 
 namespace OzhanHr.Application.Features.LeaveType.Request.Commands
 {
-    public class RemoveLeaveTypeCommand:IRequest
+    public class RemoveLeaveTypeCommand:IRequest<Unit>
     {
         public LeaveTypeDTO LeaveTypeDto { get; set; }
     }

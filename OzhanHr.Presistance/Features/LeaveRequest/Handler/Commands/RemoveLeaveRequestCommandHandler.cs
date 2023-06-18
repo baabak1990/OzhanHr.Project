@@ -12,7 +12,7 @@ using OzhanHr.Domain.Entities.Leave;
 
 namespace OzhanHr.Application.Features.LeaveRequest.Handler.Commands
 {
-    public class RemoveLeaveRequestCommandHandler:IRequestHandler<RemoveLeaveRequestCommand>
+    public class RemoveLeaveRequestCommandHandler:IRequestHandler<RemoveLeaveRequestCommand,Unit>
     {
         private readonly IleaveRequestRepository _IleaveRequestRepository;
         private readonly IMapper _mapper;

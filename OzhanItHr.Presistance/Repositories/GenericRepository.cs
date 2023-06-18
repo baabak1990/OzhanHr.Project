@@ -6,7 +6,7 @@ namespace OzhanItHr.Persistence.Repositories
 {
     public class GenericRepository<T>:IGenericRepository<T> where T:class
     {
-        private readonly DefaultDbContext _context;
+        protected readonly DefaultDbContext _context;
 
         public GenericRepository(DefaultDbContext context)
         {

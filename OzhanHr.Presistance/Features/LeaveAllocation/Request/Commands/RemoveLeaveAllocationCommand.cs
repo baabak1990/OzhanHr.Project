@@ -8,7 +8,7 @@ using OzhanHr.Application.DTOs.LeaveAllocation;
 
 namespace OzhanHr.Application.Features.LeaveAllocation.Request.Commands
 {
-    public class RemoveLeaveAllocationCommand:IRequest
+    public class RemoveLeaveAllocationCommand:IRequest<Unit>
     {
         public LeaveAllocationDTO AllocationDto { get; set; }
     }
